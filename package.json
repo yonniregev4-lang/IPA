@@ -1,0 +1,13 @@
+{
+  "name": "pip-playground",
+  "version": "1.0.0",
+  "description": "HTML, CSS and JavaScript editor with live preview, smart autocomplete, GitHub publishing and Pip the typo-catching fox.",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

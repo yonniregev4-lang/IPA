@@ -1,0 +1,74 @@
+# Builds the Pip Playground iPhone app (.ipa) on GitHub's Mac computers.
+# Runs on every push to main that touches the app or the editor, or by hand from the Actions tab.
+# The finished .ipa is attached to a new release on the repository's Releases page.
+name: Build iPhone app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "ios/**"
+      - "public/**"
+      - ".github/workflows/build-ipa.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Put the editor inside the app
+        run: |
+          rm -rf ios/web
+          cp -R public ios/web
+          rm -f ios/web/sw.js
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Make the Xcode project
+        working-directory: ios
+        run: xcodegen generate
+
+      - name: Build (unsigned)
+        working-directory: ios
+        run: |
+          xcodebuild \
+            -project PipPlayground.xcodeproj \
+            -scheme PipPlayground \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Package the .ipa
+        working-directory: ios
+        run: |
+          rm -rf Payload PipPlayground.ipa
+          mkdir Payload
+          cp -R build/Build/Products/Release-iphoneos/PipPlayground.app Payload/
+          zip -qry PipPlayground.ipa Payload
+          ls -la PipPlayground.ipa
+
+      - name: Keep a copy in this run
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipPlayground-ipa
+          path: ios/PipPlayground.ipa
+
+      - name: Publish to the Releases page
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "app-${{ github.run_number }}" ios/PipPlayground.ipa \
+            --title "Pip Playground app, build ${{ github.run_number }}" \
+            --notes "Unsigned iPhone app. Install it with Sideloadly, AltStore or another signing tool." \
+            --repo "${{ github.repository }}"

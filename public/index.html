@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pip Playground</title>
+<meta name="description" content="Write HTML, CSS and JavaScript with live preview, smart autocomplete and Pip the fox who catches your typos.">
+<meta name="theme-color" content="#10121a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eceef5" media="(prefers-color-scheme: light)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="/assets/styles.0082454dd6.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="pip-face" viewBox="0 0 100 100">
+      <polygon points="20,44 24,6 48,30" fill="#ff8a3d"/><polygon points="26,34 27,15 41,30" fill="#ffd2b3"/>
+      <polygon points="80,44 76,6 52,30" fill="#ff8a3d"/><polygon points="74,34 73,15 59,30" fill="#ffd2b3"/>
+      <ellipse cx="50" cy="60" rx="38" ry="34" fill="#ff8a3d"/>
+      <ellipse cx="50" cy="73" rx="23" ry="17" fill="#fff1e6"/>
+      <ellipse cx="37" cy="56" rx="5.5" ry="6.8" fill="#1d1b2b"/><ellipse cx="63" cy="56" rx="5.5" ry="6.8" fill="#1d1b2b"/>
+      <circle cx="39" cy="53.5" r="2" fill="#fff"/><circle cx="65" cy="53.5" r="2" fill="#fff"/>
+      <ellipse cx="50" cy="65" rx="3.6" ry="2.6" fill="#1d1b2b"/>
+      <path d="M44 70 Q50 76 56 70" fill="none" stroke="#1d1b2b" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app" data-view="split">
+  <header class="top">
+    <div class="brand"><svg aria-hidden="true"><use href="#pip-face"/></svg><button class="proj-btn" id="projBtn" type="button" title="Your projects" aria-label="Your projects"><b>Pip</b><span class="pname" id="projName">My website</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
+    <div class="filebar">
+      <button class="btn icon exbtn" id="exBtn" type="button" aria-pressed="false" title="Files and folders" aria-label="Files and folders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h4l2 2.5h7A2.5 2.5 0 0 1 21 9v8.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/></svg></button>
+      <nav class="files" id="tabs" role="tablist" aria-label="Files"></nav>
+    </div>
+    <div class="views" role="radiogroup" aria-label="Layout">
+      <button role="radio" data-view="code" aria-checked="false" title="Code only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg><span>Code</span></button>
+      <button role="radio" data-view="split" aria-checked="true" title="Half and half"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M12 4v16"/></svg><span>Split</span></button>
+      <button role="radio" data-view="preview" aria-checked="false" title="Preview only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Preview</span></button>
+    </div>
+    <div class="acts">
+      <label class="auto" title="Update the preview as you type"><input type="checkbox" id="autorun" checked><i class="sw"></i><span class="txt">Live</span></label>
+      <button class="btn ghbtn" id="ghBtn" type="button" data-state="off" title="Publish your site with GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg><span class="gh-txt">Publish</span><i class="gdot"></i></button>
+      <button class="btn primary" id="runBtn" title="Run (Ctrl+Enter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg><span class="run-txt">Run</span></button>
+      <button class="btn icon" id="menuBtn" aria-haspopup="true" aria-expanded="false" title="More"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+    </div>
+  </header>
+
+  <main class="work" id="work">
+    <section class="pane ed-pane" id="edPane" aria-label="Code editor">
+      <div class="ed-body">
+        <aside class="explorer" id="explorer" aria-label="Files and folders">
+          <div class="ex-head"><span>Files</span>
+            <button id="exNewFile" type="button" title="New file" aria-label="New file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6M9 15h6"/></svg></button>
+            <button id="exNewFolder" type="button" title="New folder" aria-label="New folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h4l2 2.5h7A2.5 2.5 0 0 1 21 9v8.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M12 10.5v6M9 13.5h6"/></svg></button>
+            <button id="exClose" class="ex-x" type="button" title="Close" aria-label="Close files">×</button>
+          </div>
+          <div class="ex-tree" id="exTree" role="tree" aria-label="Project"></div>
+          <div class="ex-foot">
+            <div class="ex-foot-h">CSS &amp; JS go to</div>
+            <div class="seg2" id="linkSeg" role="radiogroup" aria-label="Which pages get your CSS and JS">
+              <button type="button" role="radio" data-mode="auto" aria-checked="true">All pages</button>
+              <button type="button" role="radio" data-mode="manual" aria-checked="false">Linked only</button>
+            </div>
+            <p class="ex-hint" id="linkNote"></p>
+          </div>
+        </aside>
+        <div class="eds" id="eds"></div>
+      </div>
+      <div class="keybar" id="keybar" aria-label="Coding keys"></div>
+      <footer class="status">
+        <span id="pos">Ln 1, Col 1</span><button id="wrapStatus" type="button" title="Wrap long lines">Wrap: On</button><span id="langLbl">HTML</span><span class="sp"></span>
+        <button id="pipStatus" type="button">Pip is watching</button>
+      </footer>
+    </section>
+    <div class="divider" id="divider" role="separator" aria-orientation="vertical" aria-label="Resize panes" tabindex="0"></div>
+    <section class="pane pv-pane" id="pvPane" aria-label="Preview">
+      <div class="pvbar">
+        <label class="url"><i class="live" id="live"></i><select id="pageSel" aria-label="Page shown in the preview"></select><svg class="sel-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><span class="state" id="urlTxt">live</span></label>
+        <div class="seg" id="sizes" role="group" aria-label="Preview width">
+          <button data-size="phone" aria-pressed="false" title="Phone width"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2" stroke-linecap="round"/></svg></button>
+          <button data-size="tablet" aria-pressed="false" title="Tablet width"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2.5"/></svg></button>
+          <button data-size="full" aria-pressed="true" title="Full width"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 20.5h8" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="seg"><button id="reload" title="Run again"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></button></div>
+      </div>
+      <div class="stage" id="stage" data-size="full"><iframe id="frame" title="Live preview" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe></div>
+      <div class="console" id="console">
+        <div class="chead">
+          <button class="ct" id="cToggle" aria-expanded="false"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l9 7-9 7z"/></svg>Console</button>
+          <span class="ccount" id="cCount">0</span><span class="sp"></span>
+          <button class="clr" id="cClear">Clear</button>
+        </div>
+        <div class="clog" id="clog" hidden><div class="empty">Nothing logged yet. Try <code>console.log("hi")</code> in script.js.</div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="pet-wrap" id="petWrap">
+  <div class="bubble" id="bubble" hidden role="status" aria-live="polite"><div class="b-in" id="bIn"></div></div>
+  <button class="pet" id="pet" data-mood="happy" aria-label="Pip, your code buddy">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <g class="body-g">
+        <path d="M79 80 C 97 80, 100 58, 90 49 C 93 63, 86 71, 76 71 Z" fill="#ff8a3d"/>
+        <path d="M90 49 C 97 55 98 64 94 71 C 94 63 93 56 90 49 Z" fill="#fff1e6"/>
+        <polygon points="21,42 25,7 48,29" fill="#ff8a3d"/><polygon points="27,33 28,16 41,29" fill="#ffd2b3"/>
+        <polygon points="79,42 75,7 52,29" fill="#ff8a3d"/><polygon points="73,33 72,16 59,29" fill="#ffd2b3"/>
+        <ellipse cx="38" cy="91" rx="8.5" ry="4.6" fill="#e2621a"/><ellipse cx="62" cy="91" rx="8.5" ry="4.6" fill="#e2621a"/>
+        <ellipse cx="50" cy="60" rx="36" ry="33" fill="#ff8a3d"/>
+        <ellipse cx="50" cy="72" rx="22" ry="17" fill="#fff1e6"/>
+        <g class="eyes"><ellipse cx="38" cy="55" rx="5" ry="6.3" fill="#1d1b2b"/><ellipse cx="62" cy="55" rx="5" ry="6.3" fill="#1d1b2b"/><circle cx="39.9" cy="52.5" r="1.9" fill="#fff"/><circle cx="63.9" cy="52.5" r="1.9" fill="#fff"/></g>
+        <path class="brow" d="M31 46.5 L43 42.5" stroke="#1d1b2b" stroke-width="2.6" stroke-linecap="round"/>
+        <path class="brow" d="M69 46.5 L57 42.5" stroke="#1d1b2b" stroke-width="2.6" stroke-linecap="round"/>
+        <ellipse cx="28.5" cy="66" rx="5" ry="3" fill="#ff5d8f" opacity=".45"/><ellipse cx="71.5" cy="66" rx="5" ry="3" fill="#ff5d8f" opacity=".45"/>
+        <ellipse cx="50" cy="64" rx="3.4" ry="2.4" fill="#1d1b2b"/>
+        <path class="m m-happy" d="M44.5 69 Q50 74.5 55.5 69" fill="none" stroke="#1d1b2b" stroke-width="2.2" stroke-linecap="round"/>
+        <path class="m m-worried" d="M45.5 72.5 Q50 68.5 54.5 72.5" fill="none" stroke="#1d1b2b" stroke-width="2.2" stroke-linecap="round"/>
+        <path class="m m-cheer" d="M43.5 68.5 Q50 80 56.5 68.5 Z" fill="#1d1b2b"/>
+      </g>
+    </svg>
+    <span class="badge" id="petBadge" hidden>0</span>
+  </button>
+</div>
+
+<div class="ac" id="ac" hidden><ul id="acList" role="listbox" aria-label="Suggestions"></ul><div class="foot" id="acFoot"></div></div>
+
+<div class="menu" id="menu" hidden role="menu">
+  <button role="menuitem" data-act="run"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Run now</button>
+  <button role="menuitem" data-act="newfile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6M9 15h6"/></svg>New file or page</button>
+  <button role="menuitem" data-act="newfolder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h4l2 2.5h7A2.5 2.5 0 0 1 21 9v8.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M12 10.5v6M9 13.5h6"/></svg>New folder</button>
+  <button role="menuitem" data-act="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14l2 2 4-4"/></svg>Get a page as one HTML file</button>
+  <button role="menuitem" data-act="linkmode" id="linkMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><span>CSS &amp; JS: all pages</span></button>
+  <button role="menuitem" data-act="wrap" id="wrapToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h15a3 3 0 0 1 0 6h-4M3 18h7M16 16l-2 2 2 2"/></svg><span>Wrap long lines: On</span></button>
+  <button role="menuitem" data-act="pet" id="petToggle"><svg viewBox="0 0 24 24"><use href="#pip-face"/></svg><span>Hide Pip</span></button>
+  <hr>
+  <button role="menuitem" data-act="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Projects…</button>
+  <button role="menuitem" data-act="publish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>Publish with GitHub…</button>
+  <button role="menuitem" data-act="zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download project as .zip</button>
+  <hr>
+  <div class="keys"><kbd>Ctrl</kbd>+<kbd>S</kbd> save (and commit)<br><kbd>Tab</kbd> expand <code>div</code>, <code>.card</code>, <code>li*3</code>, <code>!</code><br><kbd>Ctrl</kbd>+<kbd>Space</kbd> suggestions<br><kbd>Ctrl</kbd>+<kbd>/</kbd> comment line<br><kbd>Ctrl</kbd>+<kbd>Enter</kbd> run<br><kbd>Esc</kbd> then <kbd>Tab</kbd> leaves the editor</div>
+</div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="card" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <h2 id="sheetTitle">Your page as one file</h2>
+    <label class="nf-field"><span>Page</span><select id="exportPage"></select></label>
+    <p>The page with its CSS and JavaScript merged into one file. Export each page and save them side by side so links between them keep working.</p>
+    <textarea id="exportTxt" readonly spellcheck="false" aria-label="Combined HTML file"></textarea>
+    <div class="row"><button class="btn" id="sheetClose">Close</button><button class="btn primary" id="sheetCopy">Copy</button></div>
+  </div>
+</div>
+<div class="sheet" id="newSheet" hidden>
+  <form class="card nf" id="newForm" role="dialog" aria-modal="true" aria-labelledby="nfTitle" novalidate>
+    <h2 id="nfTitle">New file</h2>
+    <div class="nf-kinds" id="nfKinds" role="radiogroup" aria-label="What to make">
+      <button type="button" role="radio" data-kind="html" aria-checked="true"><i class="dot" data-lang="html"></i><b>Page</b><small>.html</small></button>
+      <button type="button" role="radio" data-kind="css" aria-checked="false"><i class="dot" data-lang="css"></i><b>Style</b><small>.css</small></button>
+      <button type="button" role="radio" data-kind="js" aria-checked="false"><i class="dot" data-lang="js"></i><b>Script</b><small>.js</small></button>
+      <button type="button" role="radio" data-kind="folder" aria-checked="false"><i class="dot" data-lang="folder"></i><b>Folder</b><small>group files</small></button>
+    </div>
+    <label class="nf-field"><span>Name</span><input id="nfName" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <label class="nf-field"><span>Inside</span><select id="nfFolder"></select></label>
+    <p class="nf-note" id="nfNote"></p>
+    <label class="nf-check" id="nfLinkWrap" hidden><input type="checkbox" id="nfLinkAll" checked><span id="nfLinkAllTxt">Add a link to it in every page</span></label>
+    <label class="nf-check" id="nfLinkPageWrap" hidden><input type="checkbox" id="nfLinkPage" checked><span>Connect my CSS and JS right away (instead of as notes)</span></label>
+    <p class="nf-err" id="nfErr" role="alert"></p>
+    <div class="row"><button type="button" class="btn" id="nfCancel">Cancel</button><button class="btn primary" type="submit" id="nfCreate">Create file</button></div>
+  </form>
+</div>
+<div class="sheet" id="projSheet" hidden>
+  <div class="card wide" role="dialog" aria-modal="true" aria-labelledby="pjTitle">
+    <div class="pj-head"><h2 id="pjTitle">Your projects</h2><button class="x-btn" id="pjClose" type="button" aria-label="Close">×</button></div>
+    <form class="pj-new" id="pjCreateForm">
+      <input id="pjName" placeholder="New project name" autocomplete="off" aria-label="New project name">
+      <select id="pjStart" aria-label="Start from"><option value="blank">Blank page</option><option value="sample">Example site</option></select>
+      <button class="btn primary" type="submit">Create</button>
+    </form>
+    <ul class="pj-list" id="pjList"></ul>
+    <p class="nf-note">Projects are saved in this browser. Connect GitHub under Publish to keep a copy online and put sites on the web.</p>
+  </div>
+</div>
+<div class="sheet" id="ghSheet" hidden>
+  <div class="card wide gh" role="dialog" aria-modal="true" aria-labelledby="ghTitle">
+    <div class="pj-head"><h2 id="ghTitle">Publish</h2><button class="x-btn" id="ghClose" type="button" aria-label="Close">×</button></div>
+    <section id="ghConnect">
+      <p class="nf-note">Connect GitHub to commit this project to a repository and put it online with GitHub Pages, for free.</p>
+      <button class="btn primary gh-oauth" id="ghOauth" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Connect with GitHub</button>
+      <p class="nf-note" id="ghOauthNote">You'll go to GitHub, it asks if you allow Pip Playground to use your repositories, and then you come straight back here.</p>
+      <p class="nf-err" id="ghErr" role="alert"></p>
+      <details class="gh-token" id="ghTokenWay">
+        <summary>Use a token instead</summary>
+        <ol>
+          <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+          <li>Under <b>Repository access</b>, choose <b>All repositories</b>.</li>
+          <li>Under <b>Permissions</b>, set <b>Administration</b>, <b>Contents</b> and <b>Pages</b> to <b>Read and write</b>.</li>
+          <li>Generate the token and paste it here.</li>
+        </ol>
+        <form class="pj-new" id="ghConnectForm">
+          <input id="ghToken" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false" aria-label="GitHub token">
+          <button class="btn" type="submit" id="ghConnectBtn">Connect</button>
+        </form>
+      </details>
+      <p class="nf-note">Your GitHub access stays in this browser only and is sent to nobody but GitHub.</p>
+    </section>
+    <section id="ghProject" hidden>
+      <div class="gh-user"><img id="ghAvatar" alt="" width="32" height="32" loading="lazy" decoding="async"><span>Connected as <b id="ghLogin"></b></span><button class="btn" id="ghLogout" type="button">Disconnect</button></div>
+      <label class="nf-field"><span>Repository for this project</span><span class="gh-repo"><span id="ghOwner">you/</span><input id="ghRepo" spellcheck="false" autocapitalize="off"></span></label>
+      <label class="nf-check"><input type="checkbox" id="ghAuto"><span>Commit automatically after every change and every <kbd>Ctrl</kbd>+<kbd>S</kbd></span></label>
+      <div class="row start"><button class="btn primary" id="ghDeploy" type="button">Commit now</button><button class="btn" id="ghPages" type="button">Put the site online</button><a class="btn" id="ghRepoLink" target="_blank" rel="noopener">Open on GitHub</a></div>
+      <p class="gh-status" id="ghStatus" role="status"></p>
+      <div class="gh-live" id="ghLive" hidden>Your site: <a id="ghUrl" target="_blank" rel="noopener"></a></div>
+      <h3>Recent commits</h3>
+      <ul class="gh-commits" id="ghCommits"></ul>
+    </section>
+    <section class="gh-other">
+      <h3>Other ways to host</h3>
+      <p class="nf-note">Download the project as a .zip and drop it on Netlify Drop, or upload it to Render as a static site.</p>
+      <div class="row start"><button class="btn" id="ghZip" type="button">Download .zip</button></div>
+    </section>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="/assets/app.49284f4e4e.js" defer></script>
+</body>
+</html>

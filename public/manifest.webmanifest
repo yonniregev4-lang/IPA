@@ -1,0 +1,10 @@
+{
+  "name": "Pip Playground",
+  "short_name": "Pip",
+  "description": "HTML, CSS and JavaScript editor with live preview and a typo-catching fox.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#10121a",
+  "theme_color": "#ff8a3d",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
